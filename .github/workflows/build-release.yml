@@ -1,0 +1,28 @@
+name: Build Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build Release Zip
+        uses: thedoctor0/zip-release@0.7.6
+        with:
+          type: 'zip'
+          filename: 'FS25_EnhancedLivestock.zip'
+          exclusions: '*.git* *.github* *.idea* *README* *LICENSE* *.md Contributors.md'
+      - name: Get Version
+        id: get_version
+        run: echo "version=$(grep '<version>' modDesc.xml | sed -e 's/<\/*version>//g' -e 's/^[ \t]*//')" >> $GITHUB_ENV
+      - name: Upload Release
+        uses: ncipollo/release-action@v1.20.0
+        with:
+          artifacts: "FS25_EnhancedLivestock.zip"
+          tag: '${{ env.version }}'
+          name: 'Enhanced Livestock v${{ env.version }}'
+          body: ${{ github.event.head_commit.message }}
+          generateReleaseNotes: 'true'
+          skipIfReleaseExists: 'true'
