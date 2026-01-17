@@ -100,10 +100,12 @@ function AnimalScreenTrailerFarm:applySourceBulk(animalTypeIndex, items)
 	g_messageCenter:subscribe(AnimalMoveEvent, self.onAnimalMovedToFarm, self)
 	g_client:getServerConnection():sendEvent(AnimalMoveEvent.new(trailer, husbandry, self.sourceAnimals, "TARGET"))
 
-    if totalMovedAnimals == 1 then
-        husbandry:addELMessage("MOVED_ANIMALS_TARGET_SINGLE", nil, { trailer:getName() })
-    elseif totalMovedAnimals > 0 then
-        husbandry:addELMessage("MOVED_ANIMALS_TARGET_MULTIPLE", nil, { totalMovedAnimals, trailer:getName() })
+    if husbandry.addELMessage ~= nil then
+        if totalMovedAnimals == 1 then
+            husbandry:addELMessage("MOVED_ANIMALS_TARGET_SINGLE", nil, { trailer:getName() })
+        elseif totalMovedAnimals > 0 then
+            husbandry:addELMessage("MOVED_ANIMALS_TARGET_MULTIPLE", nil, { totalMovedAnimals, trailer:getName() })
+        end
     end
 
 end
@@ -161,10 +163,12 @@ function AnimalScreenTrailerFarm:applyTargetBulk(animalTypeIndex, items)
 	g_messageCenter:subscribe(AnimalMoveEvent, self.onAnimalMovedToTrailer, self)
 	g_client:getServerConnection():sendEvent(AnimalMoveEvent.new(husbandry, trailer, self.targetAnimals, "SOURCE"))
 
-    if totalMovedAnimals == 1 then
-        husbandry:addELMessage("MOVED_ANIMALS_SOURCE_SINGLE", nil, { trailer:getName() })
-    elseif totalMovedAnimals > 0 then
-        husbandry:addELMessage("MOVED_ANIMALS_SOURCE_MULTIPLE", nil, { totalMovedAnimals, trailer:getName() })
+    if husbandry.addELMessage ~= nil then
+        if totalMovedAnimals == 1 then
+            husbandry:addELMessage("MOVED_ANIMALS_SOURCE_SINGLE", nil, { trailer:getName() })
+        elseif totalMovedAnimals > 0 then
+            husbandry:addELMessage("MOVED_ANIMALS_SOURCE_MULTIPLE", nil, { totalMovedAnimals, trailer:getName() })
+        end
     end
 
 end
@@ -206,7 +210,9 @@ function EL_AnimalScreenTrailerFarm:applyTarget(_, _, animalIndex)
 
     --self.targetActionFinished(false, g_i18n:getText(AnimalScreenTrailerFarm.MOVE_TO_TRAILER_ERROR_CODE_MAPPING[AnimalMoveEvent.MOVE_SUCCESS].text))
 
-    husbandry:addELMessage("MOVED_ANIMALS_SOURCE_SINGLE", nil, { trailer:getName() })
+    if husbandry.addELMessage ~= nil then
+        husbandry:addELMessage("MOVED_ANIMALS_SOURCE_SINGLE", nil, { trailer:getName() })
+    end
 
     return true
 
