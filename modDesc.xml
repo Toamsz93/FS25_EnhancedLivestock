@@ -1,6 +1,6 @@
 <modDesc descVersion="105">
     <author>renfordt</author>
-    <version>1.0.0.0</version>
+    <version>1.1.0.0</version>
     <title>
         <en>Enhanced Livestock</en>
         <de>Verbesserter Viehbestand</de>
@@ -79,6 +79,10 @@ Enhanced Animal Dealer
 - Unique genetics - every animal has individual traits affecting price
 - Pregnant animals available - chance to purchase pregnant stock
 - Quality-based pricing - farm quality affects animal traits and cost
+
+Changelog 1.1.0.0:
+- EPP Butcher integration - slaughter animals directly from the animal screen
+- Several smaller bug fixes and improvements
  ]]>
 </en>
 <de>
@@ -153,6 +157,10 @@ Verbesserter Tierhändler
 - Einzigartige Genetik - jedes Tier hat individuelle Merkmale die den Preis beeinflussen
 - Trächtige Tiere verfügbar - Chance auf Kauf trächtiger Tiere
 - Qualitätsbasierte Preise - Farmqualität beeinflusst Tiermerkmale und Kosten
+
+Changelog 1.1.0.0:
+- EPP Butcher Integration - Tiere direkt vom Tierbildschirm schlachten
+- Mehrere kleinere Bugfixes und Verbesserungen
 ]]>
 </de>
 <fr>
@@ -227,6 +235,10 @@ Marchand d'animaux ameliore
 - Genetique unique - chaque animal a des traits individuels affectant le prix
 - Animaux gestants disponibles - chance d'acheter du betail gestant
 - Prix bases sur la qualite - la qualite de la ferme affecte les traits et le cout des animaux
+
+Changelog 1.1.0.0:
+- Integration EPP Butcher - abattre les animaux directement depuis l'ecran des animaux
+- Plusieurs corrections de bugs mineurs et ameliorations
 ]]>
 </fr>
     </description>
