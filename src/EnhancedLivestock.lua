@@ -205,7 +205,7 @@ function EnhancedLivestock.loadMap()
 	g_overlayManager:addTextureConfigFile(modDirectory .. "gui/helpicons.xml", "rlHelpIcons")
     g_overlayManager:addTextureConfigFile(modDirectory .. "gui/icons.xml", "enhanced_livestock")
     g_overlayManager:addTextureConfigFile(modDirectory .. "gui/fileTypeIcons.xml", "fileTypeIcons")
-    g_rlConsoleCommandManager = ELConsoleCommandManager.new()
+    g_elConsoleCommandManager = ELConsoleCommandManager.new()
     g_diseaseManager = DiseaseManager.new()
 
     MoneyType.HERDSMAN_WAGES = MoneyType.register("herdsmanWages", "el_ui_herdsmanWages")
