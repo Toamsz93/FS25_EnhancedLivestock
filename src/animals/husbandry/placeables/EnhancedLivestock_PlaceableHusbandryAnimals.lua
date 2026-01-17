@@ -93,7 +93,7 @@ end
 
 function PlaceableHusbandryAnimals:setNextELMessageUniqueId(nextUniqueId)
 
-    self.spec_husbandryAnimals.rlMessageUniqueId = nextUniqueId or 0
+    self.spec_husbandryAnimals.elMessageUniqueId = nextUniqueId or 0
 
 end
 
@@ -102,11 +102,11 @@ function PlaceableHusbandryAnimals:getNextELMessageUniqueId()
 
     local spec = self.spec_husbandryAnimals
 
-    if spec.rlMessageUniqueId == nil then spec.rlMessageUniqueId = 0 end
+    if spec.elMessageUniqueId == nil then spec.elMessageUniqueId = 0 end
 
-    spec.rlMessageUniqueId = spec.rlMessageUniqueId + 1
+    spec.elMessageUniqueId = spec.elMessageUniqueId + 1
 
-    return spec.rlMessageUniqueId
+    return spec.elMessageUniqueId
 
 end
 
@@ -115,7 +115,7 @@ function EnhancedLivestock_PlaceableHusbandryAnimals:saveToXMLFile(xmlFile, key)
 
     local spec = self.spec_husbandryAnimals
 
-    xmlFile:setInt(key .. ".messages#uniqueId", spec.rlMessageUniqueId or 0)
+    xmlFile:setInt(key .. ".messages#uniqueId", spec.elMessageUniqueId or 0)
     xmlFile:setBool(key .. ".messages#unreadMessages", spec.unreadMessages or false)
 
     for i, message in pairs(spec.messages or {}) do
@@ -146,7 +146,7 @@ function EnhancedLivestock_PlaceableHusbandryAnimals:loadFromXMLFile(xmlFile, ke
 
     local spec = self.spec_husbandryAnimals
     
-    spec.rlMessageUniqueId = xmlFile:getInt(key .. ".messages#uniqueId", 0)
+    spec.elMessageUniqueId = xmlFile:getInt(key .. ".messages#uniqueId", 0)
 
     xmlFile:iterate(key .. ".messages.message", function(_, messageKey)
     
