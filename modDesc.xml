@@ -31,8 +31,13 @@ Individual Animals
 - Birthday and country of origin for each animal
 - Customizable names for your livestock
 - Ear tags on left and right ears displaying country, farm ID, animal ID, name, and birthday
+- Toggle ear tag text visibility via settings
 - Partial identifier marking on hindquarters
 - Nose rings on supported animals
+
+Optional Dependencies
+- FS25_FontLibrary - Enhanced font rendering for ear tags (shader-based fallback if not installed)
+- FS25_AnimalPackage_vanillaEdition - Automatically integrates new animal models and variants from this popular mod
 
 Enhanced Pregnancy System
 - Species-specific litter sizes (e.g., cows can have 0-3 calves)
@@ -82,6 +87,8 @@ Enhanced Animal Dealer
 
 Changelog 1.1.0.0:
 - EPP Butcher integration - slaughter animals directly from the animal screen
+- Ear tag text reintroduced with toggle setting for visibility
+- FontLibrary integration with shader-based fallback
 - Several smaller bug fixes and improvements
  ]]>
 </en>
@@ -109,8 +116,13 @@ Individuelle Tiere
 - Geburtstag und Herkunftsland für jedes Tier
 - Anpassbare Namen für Ihre Tiere
 - Ohrmarken an linkem und rechtem Ohr mit Land, Farm-ID, Tier-ID, Name und Geburtstag
+- Ohrmarkentext ein-/ausblendbar über Einstellungen
 - Teilweise Kennzeichnung am Hinterteil
 - Nasenringe bei unterstützten Tieren
+
+Optionale Abhängigkeiten
+- FS25_FontLibrary - Verbesserte Schriftdarstellung für Ohrmarken (Shader-basierter Fallback wenn nicht installiert)
+- FS25_AnimalPackage_vanillaEdition - Integriert automatisch neue Tiermodelle und Varianten aus diesem beliebten Mod
 
 Verbessertes Trächtigkeitssystem
 - Artspezifische Wurfgrößen (z.B. Kühe können 0-3 Kälber haben)
@@ -160,6 +172,8 @@ Verbesserter Tierhändler
 
 Changelog 1.1.0.0:
 - EPP Butcher Integration - Tiere direkt vom Tierbildschirm schlachten
+- Ohrmarkentext wiedereingeführt mit Einstellung zur Sichtbarkeit
+- FontLibrary-Integration mit Shader-basiertem Fallback
 - Mehrere kleinere Bugfixes und Verbesserungen
 ]]>
 </de>
@@ -187,8 +201,13 @@ Animaux individuels
 - Date de naissance et pays d'origine pour chaque animal
 - Noms personnalisables pour votre betail
 - Etiquettes auriculaires sur les oreilles gauche et droite affichant pays, ID ferme, ID animal, nom et anniversaire
+- Visibilite du texte des etiquettes auriculaires configurable dans les parametres
 - Marquage d'identification partiel sur l'arriere-train
 - Anneaux de nez sur les animaux compatibles
+
+Dependances optionnelles
+- FS25_FontLibrary - Rendu de police ameliore pour les etiquettes auriculaires (solution de secours basee sur shader si non installe)
+- FS25_AnimalPackage_vanillaEdition - Integre automatiquement les nouveaux modeles et variantes d'animaux de ce mod populaire
 
 Systeme de gestation ameliore
 - Tailles de portee specifiques a l'espece (ex: les vaches peuvent avoir 0-3 veaux)
@@ -238,6 +257,8 @@ Marchand d'animaux ameliore
 
 Changelog 1.1.0.0:
 - Integration EPP Butcher - abattre les animaux directement depuis l'ecran des animaux
+- Texte des etiquettes auriculaires reintroduit avec parametre de visibilite
+- Integration FontLibrary avec solution de secours basee sur shader
 - Plusieurs corrections de bugs mineurs et ameliorations
 ]]>
 </fr>
