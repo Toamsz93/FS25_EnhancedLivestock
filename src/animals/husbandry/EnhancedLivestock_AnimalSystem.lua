@@ -61,21 +61,44 @@ function EnhancedLivestock_AnimalSystem:loadMapData(_, mapXml, mission, baseDire
         ["earTagRight_text"] = { 0, 0, 0 }
     }
 
-    local path = ELSettings.getAnimalsXMLPath() or (modDirectory .. "xml/animals.xml")
+    -- Check if we have multiple animal files (from external mod like AnimalPackage)
+    local animalFiles = ELSettings.getAnimalFiles()
+    local externalBasePath = ELSettings.getAnimalsBasePath()
 
-    print(string.format("EnhancedLivestock - using animals XML path \'%s\'", path))
+    if animalFiles ~= nil and #animalFiles > 0 and externalBasePath ~= nil then
+        -- Load multiple animal files from external mod
+        print(string.format("EnhancedLivestock - loading %d animal files from \'%s\'", #animalFiles, externalBasePath))
 
-    local xmlFile = XMLFile.load("animals", path)
+        for _, animalFile in ipairs(animalFiles) do
+            local fullPath = externalBasePath .. animalFile
+            print(string.format("EnhancedLivestock - loading animals from \'%s\'", fullPath))
 
-    if xmlFile ~= nil then
+            local xmlFile = XMLFile.load("animals_" .. animalFile, fullPath)
+            if xmlFile ~= nil then
+                self:loadAnimals(xmlFile, externalBasePath)
+                xmlFile:delete()
+            else
+                Logging.warning("EnhancedLivestock - Failed to load animal file: %s", fullPath)
+            end
+        end
+    else
+        -- Load single animals.xml file (original behavior)
+        -- Use the custom path if set, otherwise use mod's default animals.xml
+        local path = ELSettings.getAnimalsXMLPath() or (modDirectory .. "xml/animals.xml")
+        -- IMPORTANT: Use modDirectory as basePath when loading EnhancedLivestock's animals.xml
+        -- Don't use external mod's basePath here as the config file paths are relative to EnhancedLivestock
+        local basePath = modDirectory
 
-        local basePath = ELSettings.getAnimalsBasePath() or modDirectory
+        print(string.format("EnhancedLivestock - using animals XML path \'%s\'", path))
 
-        print(string.format("EnhancedLivestock - using animals base path \'%s\'", basePath))
+        local xmlFile = XMLFile.load("animals", path)
 
-        self:loadAnimals(xmlFile, basePath)
-        xmlFile:delete()
+        if xmlFile ~= nil then
+            print(string.format("EnhancedLivestock - using animals base path \'%s\'", basePath))
 
+            self:loadAnimals(xmlFile, basePath)
+            xmlFile:delete()
+        end
     end
 
     self.customEnvironment = mission.customEnvironment

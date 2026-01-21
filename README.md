@@ -37,6 +37,8 @@ Every animal is truly unique with comprehensive individual tracking:
 - **Unique identifiers** based on the UK's cattle identification system
 - **Birthday and country of origin** for each animal
 - **Customizable names** for your livestock
+- **Ear tags** displaying country code, farm ID, animal ID, name, and birthday
+- **Toggle ear tag text** - option to show or hide text on ear tags via settings
 - **Nose rings** on supported animals
 
 ### 🤰 Enhanced Pregnancy System
@@ -145,6 +147,13 @@ Event tracking for your husbandries:
 Seamless integration with EPP Butcher mod:
 - **Direct slaughter** - send animals to butcher directly from the animal screen
 - **Automatic processing** - works with installed EPP Butcher placeables
+
+---
+
+## 📦 Optional Dependencies
+
+- **FS25_FontLibrary** - Provides enhanced font rendering for ear tag text. If not installed, a shader-based fallback is used automatically.
+- **FS25_AnimalPackage_vanillaEdition** - Popular mod that introduces new animal models and variants. If installed, Enhanced Livestock automatically detects and uses the animals and models from this mod instead of the vanilla ones. The integration is seamless and requires no configuration.
 
 ---
 
