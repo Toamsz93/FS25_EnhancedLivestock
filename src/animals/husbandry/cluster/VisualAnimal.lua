@@ -61,24 +61,139 @@ function VisualAnimal.new(animal, husbandryId, animalId)
 
 end
 
+-- Track which root nodes have already had their hierarchy printed to avoid spam
+VisualAnimal.printedHierarchies = {}
+
+function VisualAnimal.printHierarchy(nodeId, currentPath, depth)
+	local name = getName(nodeId)
+	if name == nil then name = "Unknown" end
+
+	local numChildren = getNumOfChildren(nodeId)
+	local indent = string.rep("  ", depth)
+
+	Logging.info("[EnhancedLivestock]: %sName: %s | ID: %d | Path: %s | Children: %d", indent, name, nodeId, currentPath, numChildren)
+
+	for i = 0, numChildren - 1 do
+		local childId = getChildAt(nodeId, i)
+
+		local childPath = ""
+		if currentPath == "" then
+			childPath = tostring(i)
+		else
+			childPath = currentPath .. "|" .. i
+		end
+
+		VisualAnimal.printHierarchy(childId, childPath, depth + 1)
+	end
+end
+
+-- Get a descriptive string identifying the animal for log messages
+function VisualAnimal:getAnimalDescription()
+	local animal = self.animal
+	if animal == nil then
+		return "unknown animal"
+	end
+
+	local parts = {}
+
+	-- Get animal type/subtype name from animal system
+	if animal.subTypeIndex ~= nil and g_currentMission ~= nil and g_currentMission.animalSystem ~= nil then
+		local subType = g_currentMission.animalSystem:getSubTypeByIndex(animal.subTypeIndex)
+		if subType ~= nil and subType.name ~= nil then
+			table.insert(parts, subType.name)
+		end
+	end
+
+	-- Add unique ID if available
+	if animal.uniqueId ~= nil then
+		table.insert(parts, "ID: " .. animal.uniqueId)
+	end
+
+	-- Add name if available
+	local name = animal:getName()
+	if name ~= nil and name ~= "" then
+		table.insert(parts, "'" .. name .. "'")
+	end
+
+	if #parts > 0 then
+		return table.concat(parts, ", ")
+	end
+
+	return "unknown animal"
+end
+
+-- Manually validate and traverse the index path to avoid game engine error logging
+function VisualAnimal:safeIndexToObject(rootNode, indexPath, nodeName)
+	local animalDesc = self:getAnimalDescription()
+
+	if rootNode == nil or rootNode == 0 then
+		Logging.warning("[EnhancedLivestock]: Root node is nil for '%s' (animal: %s)", nodeName, animalDesc)
+		return nil
+	end
+
+	-- Split the index path by "|"
+	local indices = string.split(indexPath, "|")
+	local currentNode = rootNode
+	local traversedPath = ""
+
+	for i, indexStr in ipairs(indices) do
+		local childIndex = tonumber(indexStr)
+		if childIndex == nil then
+			Logging.warning("[EnhancedLivestock]: Invalid index '%s' in path '%s' for node '%s' (animal: %s)", indexStr, indexPath, nodeName, animalDesc)
+			return nil
+		end
+
+		local numChildren = getNumOfChildren(currentNode)
+		if childIndex >= numChildren then
+			local currentName = getName(currentNode) or "Unknown"
+			Logging.warning("[EnhancedLivestock]: Could not find node '%s' - child index %d does not exist at '%s' (node '%s' has only %d children, indices 0-%d) [animal: %s]",
+				nodeName, childIndex, traversedPath == "" and "root" or traversedPath, currentName, numChildren, numChildren - 1, animalDesc)
+
+			-- Print hierarchy only once per root node
+			if not VisualAnimal.printedHierarchies[rootNode] then
+				VisualAnimal.printedHierarchies[rootNode] = true
+				Logging.info("[EnhancedLivestock]: Printing node hierarchy for debugging:")
+				VisualAnimal.printHierarchy(rootNode, "", 0)
+			end
+
+			return nil
+		end
+
+		currentNode = getChildAt(currentNode, childIndex)
+		if currentNode == nil or currentNode == 0 then
+			Logging.warning("[EnhancedLivestock]: Node became nil at index %d in path '%s' for '%s' (animal: %s)", childIndex, indexPath, nodeName, animalDesc)
+			return nil
+		end
+
+		-- Build traversed path for error messages
+		if traversedPath == "" then
+			traversedPath = indexStr
+		else
+			traversedPath = traversedPath .. "|" .. indexStr
+		end
+	end
+
+	return currentNode
+end
+
 function VisualAnimal:load()
 
 	local nodes = self.nodes
 	local visualData = g_currentMission.animalSystem:getVisualByAge(self.animal.subTypeIndex, self.animal.age)
 
-	if visualData.monitor ~= nil then nodes.monitor = I3DUtil.indexToObject(nodes.root, visualData.monitor) end
-	if visualData.noseRing ~= nil then nodes.noseRing = I3DUtil.indexToObject(nodes.root, visualData.noseRing) end
-	if visualData.bumId ~= nil then nodes.bumId = I3DUtil.indexToObject(nodes.root, visualData.bumId) end
-	if visualData.marker ~= nil then nodes.marker = I3DUtil.indexToObject(nodes.root, visualData.marker) end
-	if visualData.earTagLeft ~= nil then nodes.earTagLeft = I3DUtil.indexToObject(nodes.root, visualData.earTagLeft) end
-	if visualData.earTagRight ~= nil then nodes.earTagRight = I3DUtil.indexToObject(nodes.root, visualData.earTagRight) end
+	if visualData.monitor ~= nil then nodes.monitor = self:safeIndexToObject(nodes.root, visualData.monitor, "monitor") end
+	if visualData.noseRing ~= nil then nodes.noseRing = self:safeIndexToObject(nodes.root, visualData.noseRing, "noseRing") end
+	if visualData.bumId ~= nil then nodes.bumId = self:safeIndexToObject(nodes.root, visualData.bumId, "bumId") end
+	if visualData.marker ~= nil then nodes.marker = self:safeIndexToObject(nodes.root, visualData.marker, "marker") end
+	if visualData.earTagLeft ~= nil then nodes.earTagLeft = self:safeIndexToObject(nodes.root, visualData.earTagLeft, "earTagLeft") end
+	if visualData.earTagRight ~= nil then nodes.earTagRight = self:safeIndexToObject(nodes.root, visualData.earTagRight, "earTagRight") end
 
-	self:setMonitor()
-	self:setNoseRing()
-	self:setBumId()
-	self:setMarker()
-	self:setLeftEarTag()
-	self:setRightEarTag()
+	if nodes.monitor ~= nil then self:setMonitor() end
+	if nodes.noseRing ~= nil then self:setNoseRing() end
+	if nodes.bumId ~= nil then self:setBumId() end
+	if nodes.marker ~= nil then self:setMarker() end
+	if nodes.earTagLeft ~= nil then self:setLeftEarTag() end
+	if nodes.earTagRight ~= nil then self:setRightEarTag() end
 
 end
 
