@@ -205,7 +205,9 @@
 
 
 		<text name="el_ui_castrated" text="Hadım Edildi"/>
+		<text name="el_ui_castrated_github" text="Hadım Edildi"/>
 		<text name="el_ui_castrate" text="Hadım Et"/>
+		<text name="el_ui_castrate_github" text="Hadım Et"/>
 
 		<text name="el_ui_importance" text="Önem"/>
 		<text name="el_ui_type" text="Tür"/>
@@ -254,13 +256,16 @@
 		<text name="el_ui_strawSingle" text="Saman"/>
 		<text name="el_ui_strawMultiple" text="Samanlar"/>
 		<text name="el_ui_artificialInsemination" text="Yapay Tohumlama"/>
+		<text name="el_ui_artificialInsemination_github" text="Yapay Tohumlama"/>
 		<text name="el_ui_semenPurchaseNoPermission" text="Hayvan ticareti yapma veya tohumlama malzemesi satın alma izniniz yok."/>
 		<text name="el_ui_semenPurchaseNoPermission_github" text="Hayvan ticareti yapma veya semen satın alma izniniz yok."/>
 		<text name="el_ui_semenPurchaseNoMoney" text="Bu tohumlama malzemesini satın almak için yeterli paranız yok."/>
 		<text name="el_ui_semenPurchaseNoMoney_github" text="Bu semen'i satın almak için yeterli paranız yok."/>
 		<text name="el_ui_takeStraw" text="Saman Al"/>
 		<text name="el_ui_inseminateAnimal" text="Tohumla %s"/>
+		<text name="el_ui_inseminateAnimal_github" text="Tohumla %s"/>
 		<text name="el_ui_inseminate" text="Tohumla"/>
+		<text name="el_ui_inseminate_github" text="Tohumla"/>
 		<text name="el_ui_strawEmpty" text="Bu saman boş"/>
 		<text name="el_ui_averageSuccessColon" text="Ortalama Başarı: "/>
 		<text name="el_ui_averageSuccess" text="Ortalama Başarı"/>
@@ -276,18 +281,23 @@
 
 
 		<text name="el_insemination_male" text="Sadece dişiler yapay tohumlanabilir"/>
+		<text name="el_insemination_male_github" text="Sadece dişiler yapay tohumlanabilir"/>
 		<text name="el_insemination_pregnant" text="Bu hayvan zaten hamile"/>
 		<text name="el_insemination_animalType" text="Hayvan baba ile aynı türden olmalı"/>
 		<text name="el_insemination_inseminated" text="Bu hayvan zaten yapay tohumlanmış"/>
+		<text name="el_insemination_inseminated_github" text="Bu hayvan zaten yapay tohumlanmış"/>
 		<text name="el_insemination_recovering" text="Bu hayvan önceki hamileliğinden hala iyileşiyor"/>
 		<text name="el_insemination_father" text="Akraba üremesi izin verilmiyor"/>
 		<text name="el_insemination_young" text="Bu hayvan yapay tohumlanma için çok genç"/>
+		<text name="el_insemination_young_github" text="Bu hayvan yapay tohumlanma için çok genç"/>
 
 
 		<text name="el_mark_aiManager_sell" text="Çoban satmak için işaretledi"/>
 		<text name="el_mark_aiManager_castrate" text="Çoban hadım etmek için işaretledi"/>
+		<text name="el_mark_aiManager_castrate_github" text="Çoban hadım etmek için işaretledi"/>
 		<text name="el_mark_aiManager_disease" text="Çoban tedavi için işaretledi"/>
 		<text name="el_mark_aiManager_ai" text="Çoban yapay tohumlama için işaretledi"/>
+		<text name="el_mark_aiManager_ai_github" text="Çoban yapay tohumlama için işaretledi"/>
 		<text name="el_mark_player" text="Oyuncu tarafından işaretlendi"/>
 
 
@@ -373,31 +383,49 @@
 
 
 		<text name="el_ui_herdsmanTooltip_castrate_enabled_1" text="Çoban hayvanları hadım etmeyecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_enabled_1_github" text="Çoban hayvanları hadım etmeyecek"/>
 		<text name="el_ui_herdsmanTooltip_castrate_enabled_2" text="Çoban hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_enabled_2_github" text="Çoban hayvanları hadım edecek"/>
 
 		<text name="el_ui_herdsmanTooltip_castrate_mark_1" text="Çoban hayvanları hadım için işaretlemeyecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_mark_1_github" text="Çoban hayvanları hadım için işaretlemeyecek"/>
 		<text name="el_ui_herdsmanTooltip_castrate_mark_2" text="Çoban hayvanları hadım için işaretleyecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_mark_2_github" text="Çoban hayvanları hadım için işaretleyecek"/>
 
 		<text name="el_ui_herdsmanTooltip_castrate_diseasesSecondary_1" text="Çoban hastalıklara bakmadan hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_diseasesSecondary_1_github" text="Çoban hastalıklara bakmadan hayvanları hadım edecek"/>
 		<text name="el_ui_herdsmanTooltip_castrate_diseasesSecondary_2" text="Çoban sadece hastalıklı hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_diseasesSecondary_2_github" text="Çoban sadece hastalıklı hayvanları hadım edecek"/>
 
 		<text name="el_ui_herdsmanTooltip_castrate_age_equal" text="Çoban sadece %s yaşındaki hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_age_equal_github" text="Çoban sadece %s yaşındaki hayvanları hadım edecek"/>
 		<text name="el_ui_herdsmanTooltip_castrate_age_range" text="Çoban sadece %s ile %s yaş arasındaki hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_age_range_github" text="Çoban sadece %s ile %s yaş arasındaki hayvanları hadım edecek"/>
 
 		<text name="el_ui_herdsmanTooltip_castrate_quality_equal" text="Çoban sadece %s kalitesindeki hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_quality_equal_github" text="Çoban sadece %s kalitesindeki hayvanları hadım edecek"/>
 		<text name="el_ui_herdsmanTooltip_castrate_quality_range" text="Çoban kalitesi %s ile %s arasında olan hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_quality_range_github" text="Çoban kalitesi %s ile %s arasında olan hayvanları hadım edecek"/>
 
 		<text name="el_ui_herdsmanTooltip_castrate_fertility_equal" text="Çoban sadece %s doğurganlığındaki hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_fertility_equal_github" text="Çoban sadece %s doğurganlığındaki hayvanları hadım edecek"/>
 		<text name="el_ui_herdsmanTooltip_castrate_fertility_range" text="Çoban doğurganlığı %s ile %s arasında olan hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_fertility_range_github" text="Çoban doğurganlığı %s ile %s arasında olan hayvanları hadım edecek"/>
 
 		<text name="el_ui_herdsmanTooltip_castrate_health_equal" text="Çoban sadece %s sağlığındaki hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_health_equal_github" text="Çoban sadece %s sağlığındaki hayvanları hadım edecek"/>
 		<text name="el_ui_herdsmanTooltip_castrate_health_range" text="Çoban sağlığı %s ile %s arasında olan hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_health_range_github" text="Çoban sağlığı %s ile %s arasında olan hayvanları hadım edecek"/>
 
 		<text name="el_ui_herdsmanTooltip_castrate_productivity_equal" text="Çoban sadece %s üretkenliğindeki hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_productivity_equal_github" text="Çoban sadece %s üretkenliğindeki hayvanları hadım edecek"/>
 		<text name="el_ui_herdsmanTooltip_castrate_productivity_range" text="Çoban üretkenliği %s ile %s arasında olan hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_productivity_range_github" text="Çoban üretkenliği %s ile %s arasında olan hayvanları hadım edecek"/>
 
 		<text name="el_ui_herdsmanTooltip_castrate_metabolism_equal" text="Çoban sadece %s metabolizmasındaki hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_metabolism_equal_github" text="Çoban sadece %s metabolizmasındaki hayvanları hadım edecek"/>
 		<text name="el_ui_herdsmanTooltip_castrate_metabolism_range" text="Çoban metabolizması %s ile %s arasında olan hayvanları hadım edecek"/>
+		<text name="el_ui_herdsmanTooltip_castrate_metabolism_range_github" text="Çoban metabolizması %s ile %s arasında olan hayvanları hadım edecek"/>
 
 
 		<!-- AI - NAMING -->
@@ -414,15 +442,22 @@
 
 
 		<text name="el_ui_herdsmanTooltip_ai_enabled_1" text="Çoban hayvanları yapay tohumlamayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_enabled_1_github" text="Çoban hayvanları yapay tohumlamayacak"/>
 		<text name="el_ui_herdsmanTooltip_ai_enabled_2" text="Çoban hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_enabled_2_github" text="Çoban hayvanları yapay tohumlayacak"/>
 
 		<text name="el_ui_herdsmanTooltip_ai_maxAnimals" text="Çoban günde en fazla %s hayvanı yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_maxAnimals_github" text="Çoban günde en fazla %s hayvanı yapay tohumlayacak"/>
 
 		<text name="el_ui_herdsmanTooltip_ai_mark_1" text="Çoban hayvanları tohumlamak için işaretlemeyecek"/>
+		<text name="el_ui_herdsmanTooltip_ai_mark_1_github" text="Çoban hayvanları tohumlamak için işaretlemeyecek"/>
 		<text name="el_ui_herdsmanTooltip_ai_mark_2" text="Çoban hayvanları tohumlamak için işaretleyecek"/>
+		<text name="el_ui_herdsmanTooltip_ai_mark_2_github" text="Çoban hayvanları tohumlamak için işaretleyecek"/>
 
 		<text name="el_ui_herdsmanTooltip_ai_diseasesSecondary_1" text="Çoban hastalıklara bakmadan hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_diseasesSecondary_1_github" text="Çoban hastalıklara bakmadan hayvanları yapay tohumlayacak"/>
 		<text name="el_ui_herdsmanTooltip_ai_diseasesSecondary_2" text="Çoban sadece hastalıklı hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_diseasesSecondary_2_github" text="Çoban sadece hastalıklı hayvanları yapay tohumlayacak"/>
 
 		<text name="el_ui_herdsmanTooltip_ai_semen" text="Çoban %s'den tohumlama malzemesi kullanacak"/>
 		<text name="el_ui_herdsmanTooltip_ai_semen_github" text="Çoban %s'den semen kullanacak"/>
@@ -430,22 +465,34 @@
 		<text name="el_ui_herdsmanTooltip_ai_semen_any_github" text="Çoban herhangi bir uygun semen kullanacak"/>
 
 		<text name="el_ui_herdsmanTooltip_ai_age_equal" text="Çoban sadece %s yaşındaki hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_age_equal_github" text="Çoban sadece %s yaşındaki hayvanları yapay tohumlayacak"/>
 		<text name="el_ui_herdsmanTooltip_ai_age_range" text="Çoban sadece %s ile %s yaş arasındaki hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_age_range_github" text="Çoban sadece %s ile %s yaş arasındaki hayvanları yapay tohumlayacak"/>
 
 		<text name="el_ui_herdsmanTooltip_ai_quality_equal" text="Çoban sadece %s kalitesindeki hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_quality_equal_github" text="Çoban sadece %s kalitesindeki hayvanları yapay tohumlayacak"/>
 		<text name="el_ui_herdsmanTooltip_ai_quality_range" text="Çoban kalitesi %s ile %s arasında olan hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_quality_range_github" text="Çoban kalitesi %s ile %s arasında olan hayvanları yapay tohumlayacak"/>
 
 		<text name="el_ui_herdsmanTooltip_ai_fertility_equal" text="Çoban sadece %s doğurganlığındaki hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_fertility_equal_github" text="Çoban sadece %s doğurganlığındaki hayvanları yapay tohumlayacak"/>
 		<text name="el_ui_herdsmanTooltip_ai_fertility_range" text="Çoban doğurganlığı %s ile %s arasında olan hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_fertility_range_github" text="Çoban doğurganlığı %s ile %s arasında olan hayvanları yapay tohumlayacak"/>
 
 		<text name="el_ui_herdsmanTooltip_ai_health_equal" text="Çoban sadece %s sağlığındaki hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_health_equal_github" text="Çoban sadece %s sağlığındaki hayvanları yapay tohumlayacak"/>
 		<text name="el_ui_herdsmanTooltip_ai_health_range" text="Çoban sağlığı %s ile %s arasında olan hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_health_range_github" text="Çoban sağlığı %s ile %s arasında olan hayvanları yapay tohumlayacak"/>
 
 		<text name="el_ui_herdsmanTooltip_ai_productivity_equal" text="Çoban sadece %s üretkenliğindeki hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_productivity_equal_github" text="Çoban sadece %s üretkenliğindeki hayvanları yapay tohumlayacak"/>
 		<text name="el_ui_herdsmanTooltip_ai_productivity_range" text="Çoban üretkenliği %s ile %s arasında olan hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_productivity_range_github" text="Çoban üretkenliği %s ile %s arasında olan hayvanları yapay tohumlayacak"/>
 
 		<text name="el_ui_herdsmanTooltip_ai_metabolism_equal" text="Çoban sadece %s metabolizmasındaki hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_metabolism_equal_github" text="Çoban sadece %s metabolizmasındaki hayvanları yapay tohumlayacak"/>
 		<text name="el_ui_herdsmanTooltip_ai_metabolism_range" text="Çoban metabolizması %s ile %s arasında olan hayvanları yapay tohumlayacak"/>
+		<text name="el_ui_herdsmanTooltip_ai_metabolism_range_github" text="Çoban metabolizması %s ile %s arasında olan hayvanları yapay tohumlayacak"/>
 
 
 
@@ -579,6 +626,7 @@
 		<text name="el_messageTitle_movement" text="Hareket"/>
 		<text name="el_messageTitle_aiManager" text="Çoban"/>
 		<text name="el_messageTitle_insemination" text="Yapay Tohumlama"/>
+		<text name="el_messageTitle_insemination_github" text="Yapay Tohumlama"/>
 
 		<text name="el_message_pregnancySingle" text="1 yavru doğurdu"/>
 		<text name="el_message_pregnancyMultiple" text="%s yavru doğurdu"/>
@@ -608,21 +656,31 @@
 		<text name="el_message_aiManager_soldAnimals_single" text="Çoban 1 hayvanı %s karşılığında sattı"/>
 		<text name="el_message_aiManager_soldAnimals_multiple" text="Çoban %s hayvanı %s karşılığında sattı"/>
 		<text name="el_message_aiManager_castrated_single" text="Çoban 1 hayvanı hadım etti"/>
+		<text name="el_message_aiManager_castrated_single_github" text="Çoban 1 hayvanı hadım etti"/>
 		<text name="el_message_aiManager_castrated_multiple" text="Çoban %s hayvanı hadım etti"/>
+		<text name="el_message_aiManager_castrated_multiple_github" text="Çoban %s hayvanı hadım etti"/>
 		<text name="el_message_aiManager_named_single" text="Çoban 1 hayvana isim verdi"/>
 		<text name="el_message_aiManager_named_multiple" text="Çoban %s hayvana isim verdi"/>
 		<text name="el_message_aiManager_mark_sell_single" text="Çoban 1 hayvanı satmak için işaretledi"/>
 		<text name="el_message_aiManager_mark_sell_multiple" text="Çoban %s hayvanı satmak için işaretledi"/>
 		<text name="el_message_aiManager_mark_castrate_single" text="Çoban 1 hayvanı hadım için işaretledi"/>
+		<text name="el_message_aiManager_mark_castrate_single_github" text="Çoban 1 hayvanı hadım için işaretledi"/>
 		<text name="el_message_aiManager_mark_castrate_multiple" text="Çoban %s hayvanı hadım için işaretledi"/>
+		<text name="el_message_aiManager_mark_castrate_multiple_github" text="Çoban %s hayvanı hadım için işaretledi"/>
 		<text name="el_message_aiManager_mark_disease_single" text="Çoban 1 hayvanı tedavi için işaretledi"/>
 		<text name="el_message_aiManager_mark_disease_multiple" text="Çoban %s hayvanı tedavi için işaretledi"/>
 		<text name="el_message_insemination_success" text="Tohumlama başarılı oldu"/>
+		<text name="el_message_insemination_success_github" text="Tohumlama başarılı oldu"/>
 		<text name="el_message_insemination_fail" text="Tohumlama başarısız oldu"/>
+		<text name="el_message_insemination_fail_github" text="Tohumlama başarısız oldu"/>
 		<text name="el_message_aiManager_mark_ai_single" text="Çoban 1 hayvanı yapay tohumlama için işaretledi"/>
+		<text name="el_message_aiManager_mark_ai_single_github" text="Çoban 1 hayvanı yapay tohumlama için işaretledi"/>
 		<text name="el_message_aiManager_mark_ai_multiple" text="Çoban %s hayvanı yapay tohumlama için işaretledi"/>
+		<text name="el_message_aiManager_mark_ai_multiple_github" text="Çoban %s hayvanı yapay tohumlama için işaretledi"/>
 		<text name="el_message_aiManager_ai_single" text="Çoban 1 hayvanı tohumladı"/>
+		<text name="el_message_aiManager_ai_single_github" text="Çoban 1 hayvanı tohumladı"/>
 		<text name="el_message_aiManager_ai_multiple" text="Çoban %s hayvanı tohumladı"/>
+		<text name="el_message_aiManager_ai_multiple_github" text="Çoban %s hayvanı tohumladı"/>
 
 
 
