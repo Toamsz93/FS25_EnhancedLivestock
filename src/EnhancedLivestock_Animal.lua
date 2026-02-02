@@ -1,6 +1,35 @@
 Animal = {}
 local Animal_mt = Class(Animal)
 
+--- Resolves subType by index, with fallback to name lookup or default index 1
+-- @param subTypeIndex number The initial subType index
+-- @param subTypeName string|nil Optional subType name for fallback lookup
+-- @return number resolvedIndex, table|nil subType, string resolvedName
+function Animal.resolveSubType(subTypeIndex, subTypeName)
+    local animalSystem = g_currentMission.animalSystem
+    local subType = animalSystem:getSubTypeByIndex(subTypeIndex)
+
+    -- Try name-based lookup if index failed and name provided
+    if subType == nil and subTypeName ~= nil and subTypeName ~= "" then
+        local mappedIndex = animalSystem:getSubTypeIndexByName(subTypeName)
+        if mappedIndex ~= nil then
+            subTypeIndex = mappedIndex
+            subType = animalSystem:getSubTypeByIndex(subTypeIndex)
+            Logging.info("EnhancedLivestock: Resolved subType '%s' from name (index %d)", subTypeName, subTypeIndex)
+        end
+    end
+
+    -- Final fallback to index 1
+    if subType == nil then
+        Logging.warning("EnhancedLivestock: subTypeIndex %d not found, falling back to 1", subTypeIndex)
+        subTypeIndex = 1
+        subType = animalSystem:getSubTypeByIndex(subTypeIndex)
+    end
+
+    local resolvedName = (subType ~= nil and subType.name) or "UNKNOWN"
+    return subTypeIndex, subType, resolvedName
+end
+
 
 function Animal.new(age, health, monthsSinceLastBirth, gender, subTypeIndex, reproduction, isParent, isPregnant, isLactating, clusterSystem, id, motherId, fatherId, pos, name, dirt, fitness, riding, farmId, weight, genetics, impregnatedBy, variation, children, monitor, isCastrated, diseases, recentlyBoughtByAI, marks, insemination)
 
@@ -20,8 +49,8 @@ function Animal.new(age, health, monthsSinceLastBirth, gender, subTypeIndex, rep
     self.health = health or 0
     self.monthsSinceLastBirth = monthsSinceLastBirth or 0
     self.gender = gender or "female"
-    self.subTypeIndex = subTypeIndex or 1
-    self.subType = g_currentMission.animalSystem:getSubTypeByIndex(self.subTypeIndex).name or "COW_SWISS_BROWN"
+    local subType
+    self.subTypeIndex, subType, self.subType = Animal.resolveSubType(subTypeIndex or 1, nil)
     self.reproduction = reproduction or 0
     self.isParent = isParent or false
     self.isPregnant = isPregnant or false
@@ -39,11 +68,9 @@ function Animal.new(age, health, monthsSinceLastBirth, gender, subTypeIndex, rep
     self.genetics = genetics
     self.impregnatedBy = impregnatedBy
 
-    self.animalTypeIndex = g_currentMission.animalSystem:getTypeIndexBySubTypeIndex(self.subTypeIndex)
-    local subType = g_currentMission.animalSystem:getSubTypeByIndex(self.subTypeIndex)
-    local targetWeight = subType.targetWeight
-
-    self.breed = subType.breed or "UNKNOWN"
+    self.animalTypeIndex = g_currentMission.animalSystem:getTypeIndexBySubTypeIndex(self.subTypeIndex) or 1
+    local targetWeight = subType ~= nil and subType.targetWeight or 0
+    self.breed = (subType ~= nil and subType.breed) or "UNKNOWN"
 
     if genetics == nil then
     
@@ -706,6 +733,7 @@ end
 function Animal:writeStream(streamId, connection)
 
     streamWriteUInt8(streamId, self.subTypeIndex)
+    streamWriteString(streamId, self.subType or "")
     streamWriteUInt16(streamId, self.age)
     streamWriteFloat32(streamId, self.health)
     streamWriteFloat32(streamId, self.reproduction)
@@ -778,6 +806,7 @@ function Animal:writeStream(streamId, connection)
             streamWriteFloat32(streamId, child.health)
             streamWriteString(streamId, child.gender)
             streamWriteUInt8(streamId, child.subTypeIndex)
+            streamWriteString(streamId, child.subType or "")
             streamWriteString(streamId, child.motherId)
             streamWriteString(streamId, child.fatherId)
 
@@ -863,10 +892,10 @@ end
 
 function Animal:readStream(streamId, connection)
 
-    self.subTypeIndex = streamReadUInt8(streamId)
-
-    self.subType = g_currentMission.animalSystem:getSubTypeByIndex(self.subTypeIndex).name
-    self.animalTypeIndex = g_currentMission.animalSystem:getTypeIndexBySubTypeIndex(self.subTypeIndex)
+    local subTypeIndex = streamReadUInt8(streamId)
+    local subTypeName = streamReadString(streamId)
+    self.subTypeIndex, _, self.subType = Animal.resolveSubType(subTypeIndex, subTypeName)
+    self.animalTypeIndex = g_currentMission.animalSystem:getTypeIndexBySubTypeIndex(self.subTypeIndex) or 1
 
     self.age = streamReadUInt16(streamId)
     self.health = streamReadFloat32(streamId)
@@ -941,9 +970,12 @@ function Animal:readStream(streamId, connection)
 
             local health = streamReadFloat32(streamId)
             local gender = streamReadString(streamId)
-            local subTypeIndex = streamReadUInt8(streamId)
+            local childSubTypeIndex = streamReadUInt8(streamId)
+            local childSubTypeName = streamReadString(streamId)
             local motherId = streamReadString(streamId)
             local fatherId = streamReadString(streamId)
+
+            childSubTypeIndex = Animal.resolveSubType(childSubTypeIndex, childSubTypeName)
 
             local genetics = {}
 
@@ -956,7 +988,7 @@ function Animal:readStream(streamId, connection)
 
             if productivity ~= nil then genetics.productivity = productivity end
 
-            local child = Animal.new(0, health, 0, gender, subTypeIndex, 0, false, false, false, nil, nil, motherId, fatherId, nil, nil, nil, nil, nil, nil, nil, genetics)
+            local child = Animal.new(0, health, 0, gender, childSubTypeIndex, 0, false, false, false, nil, nil, motherId, fatherId, nil, nil, nil, nil, nil, nil, nil, genetics)
 
             table.insert(pregnancy.pregnancies, child)
 
@@ -1089,6 +1121,7 @@ end
 function Animal:writeStreamUnborn(streamId, connection)
 
     streamWriteUInt8(streamId, self.subTypeIndex)
+    streamWriteString(streamId, self.subType or "")
 
     streamWriteFloat32(streamId, self.health)
     streamWriteString(streamId, self.gender)
@@ -1124,10 +1157,10 @@ end
 
 function Animal:readStreamUnborn(streamId, connection)
 
-    self.subTypeIndex = streamReadUInt8(streamId)
-
-    self.subType = g_currentMission.animalSystem:getSubTypeByIndex(self.subTypeIndex).name
-    self.animalTypeIndex = g_currentMission.animalSystem:getTypeIndexBySubTypeIndex(self.subTypeIndex)
+    local subTypeIndex = streamReadUInt8(streamId)
+    local subTypeName = streamReadString(streamId)
+    self.subTypeIndex, _, self.subType = Animal.resolveSubType(subTypeIndex, subTypeName)
+    self.animalTypeIndex = g_currentMission.animalSystem:getTypeIndexBySubTypeIndex(self.subTypeIndex) or 1
 
     self.health = streamReadFloat32(streamId)
     self.gender = streamReadString(streamId)
@@ -2344,6 +2377,8 @@ function Animal:createPregnancy(childNum, month, year, father)
 
     self.isPregnant = true
 
+    local fatherSubTypeIndex
+
     if father == nil then
         
         father = {
@@ -2355,7 +2390,7 @@ function Animal:createPregnancy(childNum, month, year, father)
             productivity = 1.0
         }
 
-        local fatherSubTypeIndex
+        local eligibleFathers = {}
 
         for _, animal in pairs(self.clusterSystem:getAnimals()) do
 
@@ -2374,23 +2409,24 @@ function Animal:createPregnancy(childNum, month, year, father)
             maxFertilityMonth = maxFertilityMonth * animal.genetics.fertility
 
             if animalSubType.reproductionMinAgeMonth ~= nil and animal:getAge() >= animalSubType.reproductionMinAgeMonth and animal:getAge() < maxFertilityMonth then
+                 table.insert(eligibleFathers, animal)
+            end
 
-                fatherSubTypeIndex = animal.subTypeIndex
+            if #eligibleFathers > 0 then
+                local selectedFather = eligibleFathers[math.random(1, #eligibleFathers)]
 
-                father.uniqueId = animal:getIdentifiers()
-                father.metabolism = animal.genetics.metabolism
-                father.quality = animal.genetics.quality
-                father.health = animal.genetics.health
-                father.fertility = animal.genetics.fertility
-                father.productivity = animal.genetics.productivity or nil
-                father.animal = animal
+                fatherSubTypeIndex = selectedFather.subTypeIndex
 
-                break
-
+                father.uniqueId = selectedFather:getIdentifiers()
+                father.metabolism = selectedFather.genetics.metabolism
+                father.quality = selectedFather.genetics.quality
+                father.health = selectedFather.genetics.health
+                father.fertility = selectedFather.genetics.fertility
+                father.productivity = selectedFather.genetics.productivity
+                father.animal = selectedFather
             end
 
         end
-
     end
 
     self.impregnatedBy = father
@@ -2399,43 +2435,6 @@ function Animal:createPregnancy(childNum, month, year, father)
     self:changeReproduction(self:getReproductionDelta())
 
     local genetics = self.genetics
-
-    local motherMetabolism = genetics.metabolism
-    local fatherMetabolism = father.metabolism
-    local minMetabolism = motherMetabolism >= fatherMetabolism and fatherMetabolism or motherMetabolism
-    local maxMetabolism = motherMetabolism < fatherMetabolism and fatherMetabolism or motherMetabolism
-    if maxMetabolism == minMetabolism then maxMetabolism = maxMetabolism + 0.01 end
-
-    local motherMeat = genetics.quality
-    local fatherMeat = father.quality
-    local minMeat = motherMeat >= fatherMeat and fatherMeat or motherMeat
-    local maxMeat = motherMeat < fatherMeat and fatherMeat or motherMeat
-    if maxMeat == minMeat then maxMeat = maxMeat + 0.01 end
-
-    local motherHealth = genetics.health
-    local fatherHealth = father.health
-    local minHealth = motherHealth >= fatherHealth and fatherHealth or motherHealth
-    local maxHealth = motherHealth < fatherHealth and fatherHealth or motherHealth
-    if maxHealth == minHealth then maxHealth = maxHealth + 0.01 end
-
-    local motherFertility = genetics.fertility
-    local fatherFertility = father.fertility
-    local minFertility = motherFertility >= fatherFertility and fatherFertility or motherFertility
-    local maxFertility = motherFertility < fatherFertility and fatherFertility or motherFertility
-    if maxFertility == minFertility then maxFertility = maxFertility + 0.01 end
-
-    local motherProductivity
-    local fatherProductivity
-    local minProductivity
-    local maxProductivity
-
-    if genetics.productivity ~= nil then
-        motherProductivity = genetics.productivity
-        fatherProductivity = father.productivity or 1
-        minProductivity = motherProductivity >= fatherProductivity and fatherProductivity or motherProductivity
-        maxProductivity = motherProductivity < fatherProductivity and fatherProductivity or motherProductivity
-        if maxProductivity == minProductivity then maxProductivity = maxProductivity + 0.01 end
-    end
 
     local mDiseases, fDiseases = self.diseases, father.animal ~= nil and father.animal.diseases or {}
 
@@ -2482,18 +2481,23 @@ function Animal:createPregnancy(childNum, month, year, father)
 
         local child = Animal.new(-1, 100, 0, gender, subTypeIndex, 0, false, false, false, nil, nil, self:getIdentifiers(), father.uniqueId)
                         
-        local metabolism = math.random(minMetabolism * 100, maxMetabolism * 100) / 100
-        local quality = math.random(minMeat * 100, maxMeat * 100) / 100
-        local healthGenetics = math.random(minHealth * 100, maxHealth * 100) / 100
+        -- Use BreedingMath for Gaussian genetic inheritance (allows offspring to exceed parent ranges)
+        local metabolism = BreedingMath.breedOffspring(genetics.metabolism, father.metabolism, { sd = BreedingMath.SD_CONST })
+        local quality = BreedingMath.breedOffspring(genetics.quality, father.quality, { sd = BreedingMath.SD_CONST })
+        local healthGenetics = BreedingMath.breedOffspring(genetics.health, father.health, { sd = BreedingMath.SD_CONST })
 
         local fertility = 0
         
-        if math.random() > 0.001 then fertility = math.random(minFertility * 100, maxFertility * 100) / 100 end
+        if math.random() > 0.001 then
+            fertility = BreedingMath.breedOffspring(genetics.fertility, father.fertility, { sd = BreedingMath.SD_CONST })
+        end
 
 
         local productivity = nil
                         
-        if genetics.productivity ~= nil then productivity = math.random(minProductivity * 100, maxProductivity * 100) / 100 end
+        if genetics.productivity ~= nil then
+            productivity = BreedingMath.breedOffspring(genetics.productivity, father.productivity or 1, { sd = BreedingMath.SD_CONST })
+        end
 
 
         child:setGenetics({
