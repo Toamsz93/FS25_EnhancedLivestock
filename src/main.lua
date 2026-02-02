@@ -4,7 +4,7 @@
     Loads all dependencies in the correct order.
 
     IMPORTANT: The loading order is critical - do not reorder without testing.
-    Author: renfordt  (based on Ritters RealisticLivestockRM and Arrow-kb's Realistic Livestock)
+    Author: renfordt (based on Ritters RealisticLivestockRM and Arrow-kb's Realistic Livestock)
 ]]
 
 local modDirectory = g_currentModDirectory
@@ -92,7 +92,7 @@ source(modDirectory .. "src/gui/EarTagColourPickerDialog.lua")
 source(modDirectory .. "src/gui/FileExplorerDialog.lua")
 source(modDirectory .. "src/gui/InGameMenuSettingsFrame.lua")
 source(modDirectory .. "src/gui/ProfileDialog.lua")
-source(modDirectory .. "src/gui/RL_InfoDisplayKeyValueBox.lua")
+source(modDirectory .. "src/gui/EL_InfoDisplayKeyValueBox.lua")
 source(modDirectory .. "src/gui/EnhancedLivestock_InGameMenuAnimalsFrame.lua")
 
 -- SECTION 14: Migration System
@@ -104,7 +104,7 @@ source(modDirectory .. "src/gui/EnhancedLivestock_InGameMenuAnimalsFrame.lua")
 source(modDirectory .. "src/handTools/specializations/HandToolHorseBrush.lua")
 source(modDirectory .. "src/handTools/HandTool.lua")
 source(modDirectory .. "src/handTools/HandToolSystem.lua")
-source(modDirectory .. "src/handTools/RLHandTools.lua")
+source(modDirectory .. "src/handTools/ELHandTools.lua")
 
 -- SECTION 16: Objects
 source(modDirectory .. "src/objects/Dewar.lua")
@@ -138,7 +138,12 @@ source(modDirectory .. "src/I18N.lua")
 source(modDirectory .. "src/EnhancedLivestock.lua")
 source(modDirectory .. "src/EnhancedLivestock_Animal.lua")
 source(modDirectory .. "src/EnhancedLivestock_FSBaseMission.lua")
-source(modDirectory .. "src/RLConsoleCommandManager.lua")
-source(modDirectory .. "src/RLMessage.lua")
-source(modDirectory .. "src/RLSettings.lua")
-source(modDirectory .. "src/RL_BroadcastSettingsEvent.lua")
+source(modDirectory .. "src/ELConsoleCommandManager.lua")
+source(modDirectory .. "src/ELMessage.lua")
+source(modDirectory .. "src/ELSettings.lua")
+source(modDirectory .. "src/EL_BroadcastSettingsEvent.lua")
+
+-- SECTION 21: EPP Integration
+source(modDirectory .. "src/integrations/EPPButcherIntegration.lua")
+source(modDirectory .. "src/integrations/events/EPPButcherProcessEvent.lua")
+source(modDirectory .. "src/integrations/events/EPPButcherResultEvent.lua")
