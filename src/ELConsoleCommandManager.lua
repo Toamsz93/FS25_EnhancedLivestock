@@ -16,6 +16,8 @@ function ELConsoleCommandManager.new()
         addConsoleCommand("elSetAnimalGenetics", "Set the genetics of the targeted animal", "setGenetics", self, "[geneticType] [value]")
         addConsoleCommand("elSetAnimalInput", "Set the input of the targeted animal", "setInput", self, "[inputType] [value]")
         addConsoleCommand("elSetAnimalOutput", "Set the output of the targeted animal", "setOutput", self, "[outputType] [value]")
+        --addConsoleCommand("elExtractAnimalHierarchy", "Extract visual animal hierarchy to XML file", "extractHierarchy", self, "[subTypeName] [age]")
+        --addConsoleCommand("elDumpAnimalPaths", "Dump all animal asset paths (i3d, shapes, config) to console", "dumpAnimalPaths", self)
     end
 
 	return self
@@ -157,13 +159,13 @@ function ELConsoleCommandManager:setOutput(outputType, value)
 	if self.animal == nil then return "elSetAnimalOutput: no targeted animal" end
 
 	if outputType == nil or type(outputType) ~= "string" or self.animal.output[outputType] == nil then
-		
+
 		print("elSetAnimalOutput: invalid output type given, accepted types:")
 
 		for key, _ in pairs(self.animal.output) do print("|--- " .. key) end
 
 		return
-		
+
 	end
 
 	if value == nil then return "elSetAnimalOutput: no value given" end
@@ -178,5 +180,19 @@ function ELConsoleCommandManager:setOutput(outputType, value)
 	if self.placeable ~= nil then self.placeable:updateInputAndOutput(self.placeable:getClusters()) end
 
 	return "elSetAnimalOutput: animal output set successfully"
+
+end
+
+
+function ELConsoleCommandManager:extractHierarchy(subTypeName, age)
+
+	return VisualAnimal.extractHierarchyToXml(subTypeName, age)
+
+end
+
+
+function ELConsoleCommandManager:dumpAnimalPaths()
+
+	return VisualAnimal.dumpAnimalPaths()
 
 end
