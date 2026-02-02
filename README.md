@@ -15,6 +15,9 @@
 > [!NOTE]
 > This mod is based on the [FS25 Realistic Livestock](https://github.com/Arrow-kb/FS25_RealisticLivestock) mod by [Arrow-kb](https://github.com/Arrow-kb), who has decided to cease all his mods.
 
+> [!NOTE]
+> Proudly cooperating with [FS25_RealisticLivestockRM](https://github.com/rittermod/FS25_RealisticLivestockRM) mod by [Ritter](https://github.com/rittermod).
+
 ---
 
 ## ✨ Features
@@ -168,6 +171,12 @@ Seamless integration with EPP Butcher mod:
 ![screenshot4](https://github.com/user-attachments/assets/6e296acb-c65a-4e6e-836b-f65fe13e69eb)
 
 </div>
+
+---
+
+## 🧾 Changelog
+
+You can find the full changelog here: [Changelog](CHANGELOG.md)
 
 ---
 
