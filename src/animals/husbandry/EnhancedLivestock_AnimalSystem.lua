@@ -3,6 +3,20 @@ EnhancedLivestock_AnimalSystem = {}
 local modName = g_currentModName
 local modDirectory = g_currentModDirectory
 
+local function getDaysInMonth(month)
+    local daysPerMonth = RealisticLivestock ~= nil and RealisticLivestock.DAYS_PER_MONTH or nil
+    if daysPerMonth == nil then
+        Logging.warning("RealisticLivestock: DAYS_PER_MONTH not available, using fallback of 1")
+        return 1
+    end
+    local days = daysPerMonth[month]
+    if days == nil then
+        Logging.warning("RealisticLivestock: No days defined for month %d, using fallback of 1", month)
+        return 1
+    end
+    return days
+end
+
 
 table.insert(FinanceStats.statNames, "monitorSubscriptions")
 FinanceStats.statNameToIndex["monitorSubscriptions"] = #FinanceStats.statNames
@@ -294,7 +308,12 @@ function EnhancedLivestock_AnimalSystem:loadAnimals(_, xmlFile, directory)
             
 		end
 
-		if self:loadAnimalConfig(animalType, directory, configFilename) then
+		-- Extract the config file's directory for resolving relative paths (like i3d files)
+		-- This ensures paths like "highland/cattleHighland.i3d" are resolved relative to the config file,
+		-- not the mod root directory
+		local configDirectory = configFilename:match("(.*[/\\])") or directory
+
+		if self:loadAnimalConfig(animalType, configDirectory, configFilename) then
 
 		    if self:loadSubTypes(animalType, xmlFile, key, directory) then
 
@@ -490,12 +509,38 @@ function EnhancedLivestock_AnimalSystem:loadVisualData(superFunc, animalType, xm
     local monitor = xmlFile:getString(key .. "#monitor", nil)
     local marker = xmlFile:getString(key .. "#marker", nil)
 
+    -- Dynamic ear tag attachment points (for vanilla animals without embedded ear tags)
+    local earTagLeftLink = xmlFile:getString(key .. "#earTagLeftLink", nil)
+    local earTagRightLink = xmlFile:getString(key .. "#earTagRightLink", nil)
+
+    -- Position/rotation/scale offsets for dynamically attached ear tags
+    local earTagLeftPosition = xmlFile:getVector(key .. "#earTagLeftPosition", nil)
+    local earTagLeftRotation = xmlFile:getVector(key .. "#earTagLeftRotation", nil)
+    local earTagLeftScale = xmlFile:getVector(key .. "#earTagLeftScale", nil)
+    local earTagRightPosition = xmlFile:getVector(key .. "#earTagRightPosition", nil)
+    local earTagRightRotation = xmlFile:getVector(key .. "#earTagRightRotation", nil)
+    local earTagRightScale = xmlFile:getVector(key .. "#earTagRightScale", nil)
+
     if earTagLeft ~= nil then visualData.earTagLeft = earTagLeft end
     if earTagRight ~= nil then visualData.earTagRight = earTagRight end
     if noseRing ~= nil then visualData.noseRing = noseRing end
     if bumId ~= nil then visualData.bumId = bumId end
     if monitor ~= nil then visualData.monitor = monitor end
     if marker ~= nil then visualData.marker = marker end
+
+    -- Store dynamic ear tag link data
+    if earTagLeftLink ~= nil then
+        visualData.earTagLeftLink = earTagLeftLink
+        visualData.earTagLeftPosition = earTagLeftPosition
+        visualData.earTagLeftRotation = earTagLeftRotation
+        visualData.earTagLeftScale = earTagLeftScale
+    end
+    if earTagRightLink ~= nil then
+        visualData.earTagRightLink = earTagRightLink
+        visualData.earTagRightPosition = earTagRightPosition
+        visualData.earTagRightRotation = earTagRightRotation
+        visualData.earTagRightScale = earTagRightScale
+    end
 
     if xmlFile:hasProperty(key .. ".textureIndexes") then
 
@@ -1169,7 +1214,7 @@ function AnimalSystem:createNewSaleAnimal(animalTypeIndex)
 
     if month > 12 then month = month - 12 end
 
-    local day = 1 + math.floor((environment.currentDayInPeriod - 1) * (EnhancedLivestock.DAYS_PER_MONTH[month] / environment.daysPerPeriod))
+    local day = 1 + math.floor((environment.currentDayInPeriod - 1) * (getDaysInMonth(month) / environment.daysPerPeriod))
     local year = environment.currentYear
 
 
@@ -1252,7 +1297,7 @@ function AnimalSystem:createNewSaleAnimal(animalTypeIndex)
             expectedYear = expectedYear + 1
         end
 
-        local expectedDay = math.random(1, EnhancedLivestock.DAYS_PER_MONTH[expectedMonth])
+        local expectedDay = math.random(1, getDaysInMonth(expectedMonth))
 
         if #children > 0 then
 
@@ -1518,7 +1563,7 @@ function AnimalSystem:onDayChanged()
     if month > 12 then month = month - 12 end
 
     local daysPerPeriod = environment.daysPerPeriod
-    local day = 1 + math.floor((currentDayInPeriod - 1) * (EnhancedLivestock.DAYS_PER_MONTH[month] / daysPerPeriod))
+    local day = 1 + math.floor((currentDayInPeriod - 1) * (getDaysInMonth(month) / daysPerPeriod))
     local year = environment.currentYear
 
     for _, animals in pairs(self.animals) do
