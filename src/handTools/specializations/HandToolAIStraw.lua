@@ -60,7 +60,17 @@ function HandToolAIStraw:onPostLoad(savegame)
 	end
 
 	local xmlFile, key = savegame.xmlFile, savegame.key
-	local animalKey = key .. ".FS25_EnhancedLivestock.aiStraw.animal"
+
+	-- Try new namespace first, fall back to old namespace (migration support)
+	local namespace = ".FS25_RealisticLivestockRM.aiStraw"
+	if not xmlFile:hasProperty(key .. namespace) then
+		namespace = ".FS25_RealisticLivestock.aiStraw"  -- Legacy fallback
+	end
+
+	if not xmlFile:hasProperty(key .. namespace) then return end
+
+	local baseKey = key .. namespace
+	local animalKey = baseKey .. ".animal"
 
 	spec.isEmpty = xmlFile:getBool(key .. ".FS25_EnhancedLivestock.aiStraw#isEmpty", false)
 	spec.dewarUniqueId = xmlFile:getString(key .. ".FS25_EnhancedLivestock.aiStraw#dewarUniqueId")

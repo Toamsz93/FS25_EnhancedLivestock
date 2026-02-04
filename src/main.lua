@@ -96,9 +96,9 @@ source(modDirectory .. "src/gui/EL_InfoDisplayKeyValueBox.lua")
 source(modDirectory .. "src/gui/EnhancedLivestock_InGameMenuAnimalsFrame.lua")
 
 -- SECTION 14: Migration System
--- source(modDirectory .. "src/migration/RmMigrationManager.lua")
--- source(modDirectory .. "src/migration/RmMigrationDialog.lua")
--- source(modDirectory .. "src/migration/RmItemSystemMigration.lua")
+source(modDirectory .. "src/migration/ELMigrationManager.lua")
+source(modDirectory .. "src/migration/ELMigrationDialog.lua")
+source(modDirectory .. "src/migration/ELItemSystemMigration.lua")
 
 -- SECTION 15: Hand Tools
 source(modDirectory .. "src/handTools/specializations/HandToolHorseBrush.lua")

@@ -242,13 +242,24 @@ function ELSettings.loadFromXMLFile()
 		return
 	end
 
-	local path = g_currentMission.missionInfo.savegameDirectory .. "/elSettings.xml"
+	local savegameDir = g_currentMission.missionInfo.savegameDirectory
+
+	local path = savegameDir .. "/elSettings.xml"
 
 	local xmlFile = XMLFile.loadIfExists("elSettings", path)
 
+	local rootKey = "ElSettings"
+
+	if xmlFile == nil then
+	-- Fall back to legacy filename
+		path = savegameDir .. "/rlSettings.xml"
+		xmlFile = XMLFile.loadIfExists("rlSettings", path)
+		rootKey = "settings"
+	end
+
 	if xmlFile ~= nil then
 
-		local key = "settings"
+		local key = rootKey
 
 		for name, setting in pairs(ELSettings.SETTINGS) do
 

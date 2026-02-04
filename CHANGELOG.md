@@ -13,6 +13,7 @@
 - Add fallback for days per month calculation during early load (based on RitterMod PR by killemth)
 - Refactor subType resolution into helper function with logging (based on RitterMod)
 - Several smaller bug fixes and improvements
+- Added Migration manager (based on RitterMod)
 
 ## V1.0.0.0
 

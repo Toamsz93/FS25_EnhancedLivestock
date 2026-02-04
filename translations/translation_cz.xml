@@ -698,5 +698,16 @@
 		<text name="el_epp_butcher_processed" text="Zvíře zpracováno v řeznictví: %s kg %s"/>
 		<text name="el_epp_butcher_delivered" text="%s dodáno do řeznictví (%.2fx %s)"/>
 
+		<!-- MIGRATION -->
+
+		<text name="el_conflict_title" text="Zjištěn konflikt modů"/>
+		<text name="el_mod_conflict_message" text="Následující mod(y) jsou v konfliktu s 'Enhanced Livestock' a nemohou být použity společně: %s &#10;&#10;Prosím, deaktivujte konfliktní mod(y) a restartujte hru."/>
+
+		<text name="el_migration_title" text="Oznámení o migraci dat"/>
+		<text name="el_migration_message" text="V této uložené hře byla nalezena předchozí data Realistic Livestock. Vaše nastavení, data zvířat, Dewary a ruční nástroje AI Straw budou automaticky migrovány do Enhanced Livestock při uložení hry."/>
+		<text name="el_migration_files_found" text="Nalezené datové soubory:"/>
+		<text name="el_migration_continue" text="Pokračovat"/>
+		<text name="el_migration_quit" text="Ukončit"/>
+
 	</texts>
 </l10n>

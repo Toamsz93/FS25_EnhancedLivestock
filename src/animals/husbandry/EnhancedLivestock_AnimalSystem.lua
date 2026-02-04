@@ -821,13 +821,20 @@ function AnimalSystem:loadColourConfigurations()
 		return false
 	end
 
-	local xmlFile = XMLFile.loadIfExists("animalSystem", savegame.savegameDirectory .. "/animalSystem.xml")
+	local xmlFile = XMLFile.loadIfExists("ElAnimalSystem", savegame.savegameDirectory .. "/ElAnimalSystem.xml")
+	local rootKey = "ElAnimalSystem"
+
+	if xmlFile == nil then
+	-- Fall back to legacy filename
+		xmlFile = XMLFile.loadIfExists("animalSystem", savegame.savegameDirectory .. "/animalSystem.xml")
+		rootKey = "animalSystem"
+	end
 
 	if xmlFile == nil then
 		return false
 	end
 
-	xmlFile:iterate("animalSystem.animalTypes.type", function(_, key)
+	xmlFile:iterate(rootKey .. ".animalTypes.type", function(_, key)
 
 		local name = xmlFile:getString(key .. "#name")
 		local earTagLeft = xmlFile:getVector(key .. "#earTagLeft", { 0.8, 0.7, 0 })
@@ -854,15 +861,25 @@ function AnimalSystem:loadFromXMLFile()
 		return
 	end
 
-	local xmlFile = XMLFile.loadIfExists("animalSystem", g_currentMission.missionInfo.savegameDirectory .. "/animalSystem.xml")
+	local savegameDir = g_currentMission.missionInfo.savegameDirectory
+
+	-- Try new filename first, fall back to old filename (migration support)
+	local xmlFile = XMLFile.loadIfExists("ElAnimalSystem", savegameDir .. "/rm_RlAnimalSystem.xml")
+	local rootKey = "ElAnimalSystem"
 
 	if xmlFile == nil then
-		return false
+	-- Fall back to legacy filename
+		xmlFile = XMLFile.loadIfExists("animalSystem", savegameDir .. "/animalSystem.xml")
+		rootKey = "animalSystem"
 	end
+
+	if xmlFile == nil then return false end
+
 
 	local hasData = false
 
-	xmlFile:iterate("animalSystem.countries.country", function(_, key)
+
+	xmlFile:iterate(rootKey .. ".countries.country", function(_, key)
 
 		local countryIndex = xmlFile:getInt(key .. "#index")
 
@@ -974,7 +991,7 @@ function AnimalSystem:saveToXMLFile(path)
 		return
 	end
 
-	local xmlFile = XMLFile.create("animalSystem", path, "animalSystem")
+	local xmlFile = XMLFile.create("animalSystem", path, "ElanimalSystem")
 	if xmlFile == nil then
 		return
 	end

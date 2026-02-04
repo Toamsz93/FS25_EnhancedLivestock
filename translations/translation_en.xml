@@ -700,5 +700,16 @@
 		<text name="el_epp_butcher_processed" text="Animal processed at butcher: %s kg of %s"/>
 		<text name="el_epp_butcher_delivered" text="%s delivered to butcher (%.2fx %s)"/>
 
+		<!-- MIGRATION -->
+
+		<text name="el_conflict_title" text="Mod Conflict Detected"/>
+		<text name="el_mod_conflict_message" text="The following mod(s) conflict with 'Enhanced Livestock' and cannot be used together: %s &#10;&#10;Please disable the conflicting mod(s) and restart the game."/>
+
+		<text name="el_migration_title" text="Data Migration Notice"/>
+		<text name="el_migration_message" text="Previous Realistic Livestock data was found in this savegame. Your settings, animal data, Dewars, and AI Straw hand tools will be automatically migrated to Enhanced Livestock when the game saves."/>
+		<text name="el_migration_files_found" text="Data files found:"/>
+		<text name="el_migration_continue" text="Continue"/>
+		<text name="el_migration_quit" text="Quit"/>
+
 	</texts>
 </l10n>

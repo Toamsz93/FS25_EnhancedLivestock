@@ -697,5 +697,16 @@
 		<text name="el_epp_butcher_processed" text="Hayvan kasapta işlendi: %s kg %s"/>
 		<text name="el_epp_butcher_delivered" text="%s kasaba teslim edildi (%.2fx %s)"/>
 
+		<!-- MIGRATION -->
+
+		<text name="el_conflict_title" text="Mod çakışması tespit edildi"/>
+		<text name="el_mod_conflict_message" text="Aşağıdaki mod(lar) 'Enhanced Livestock' ile çakışıyor ve birlikte kullanılamaz: %s &#10;&#10;Lütfen çakışan mod(ları) devre dışı bırakın ve oyunu yeniden başlatın."/>
+
+		<text name="el_migration_title" text="Veri taşıma bildirimi"/>
+		<text name="el_migration_message" text="Bu kayıtlı oyunda önceki Realistic Livestock verileri bulundu. Ayarlarınız, hayvan verileri, Dewarlar ve AI Straw el aletleri, oyun kaydedildiğinde otomatik olarak Enhanced Livestock'a taşınacaktır."/>
+		<text name="el_migration_files_found" text="Bulunan veri dosyaları:"/>
+		<text name="el_migration_continue" text="Devam et"/>
+		<text name="el_migration_quit" text="Çıkış"/>
+
 	</texts>
 </l10n>

@@ -684,5 +684,16 @@
 		<text name="el_epp_butcher_processed" text="Animale processato dal macellaio: %s kg di %s"/>
 		<text name="el_epp_butcher_delivered" text="%s consegnato al macellaio (%.2fx %s)"/>
 
+		<!-- MIGRATION -->
+
+		<text name="el_conflict_title" text="Conflitto mod rilevato"/>
+		<text name="el_mod_conflict_message" text="I seguenti mod sono in conflitto con 'Enhanced Livestock' e non possono essere usati insieme: %s &#10;&#10;Disabilita i mod in conflitto e riavvia il gioco."/>
+
+		<text name="el_migration_title" text="Avviso di migrazione dati"/>
+		<text name="el_migration_message" text="Sono stati trovati dati Realistic Livestock precedenti in questo salvataggio. Le tue impostazioni, dati degli animali, Dewar e strumenti manuali AI Straw saranno automaticamente migrati a Enhanced Livestock quando il gioco salva."/>
+		<text name="el_migration_files_found" text="File di dati trovati:"/>
+		<text name="el_migration_continue" text="Continua"/>
+		<text name="el_migration_quit" text="Esci"/>
+
 	</texts>
 </l10n>

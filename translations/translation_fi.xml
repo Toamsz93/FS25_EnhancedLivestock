@@ -701,5 +701,16 @@
 		<text name="el_epp_butcher_processed" text="Eläin käsitelty teurastamossa: %s kg %s"/>
 		<text name="el_epp_butcher_delivered" text="%s toimitettu teurastamoon (%.2fx %s)"/>
 
+		<!-- MIGRATION -->
+
+		<text name="el_conflict_title" text="Mod-ristiriita havaittu"/>
+		<text name="el_mod_conflict_message" text="Seuraavat modit ovat ristiriidassa 'Enhanced Livestock' kanssa eikä niitä voi käyttää yhdessä: %s &#10;&#10;Poista ristiriitaiset modit käytöstä ja käynnistä peli uudelleen."/>
+
+		<text name="el_migration_title" text="Tietojen siirtoilmoitus"/>
+		<text name="el_migration_message" text="Tästä tallennuksesta löytyi aiempaa Realistic Livestock -dataa. Asetuksesi, eläintiedot, Dewarit ja AI Straw -käsityökalut siirretään automaattisesti Enhanced Livestock -versioon pelin tallentaessa."/>
+		<text name="el_migration_files_found" text="Löydetyt datatiedostot:"/>
+		<text name="el_migration_continue" text="Jatka"/>
+		<text name="el_migration_quit" text="Lopeta"/>
+
 	</texts>
 </l10n>

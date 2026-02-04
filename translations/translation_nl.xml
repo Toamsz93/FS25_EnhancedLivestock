@@ -697,5 +697,16 @@
 		<text name="el_epp_butcher_processed" text="Dier verwerkt bij slager: %s kg %s"/>
 		<text name="el_epp_butcher_delivered" text="%s geleverd aan slager (%.2fx %s)"/>
 
+		<!-- MIGRATION -->
+
+		<text name="el_conflict_title" text="Mod-conflict gedetecteerd"/>
+		<text name="el_mod_conflict_message" text="De volgende mod(s) conflicteren met 'Enhanced Livestock' en kunnen niet samen worden gebruikt: %s &#10;&#10;Schakel de conflicterende mod(s) uit en herstart het spel."/>
+
+		<text name="el_migration_title" text="Melding gegevensmigratie"/>
+		<text name="el_migration_message" text="Eerdere Realistic Livestock-gegevens zijn gevonden in deze opslag. Uw instellingen, diergegevens, Dewars en AI Straw-handgereedschap worden automatisch gemigreerd naar Enhanced Livestock wanneer het spel opslaat."/>
+		<text name="el_migration_files_found" text="Gevonden gegevensbestanden:"/>
+		<text name="el_migration_continue" text="Doorgaan"/>
+		<text name="el_migration_quit" text="Afsluiten"/>
+
 	</texts>
 </l10n>

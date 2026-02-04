@@ -697,5 +697,16 @@
 		<text name="el_epp_butcher_processed" text="Животное обработано на бойне: %s кг %s"/>
 		<text name="el_epp_butcher_delivered" text="%s доставлено на бойню (%.2fx %s)"/>
 
+		<!-- MIGRATION -->
+
+		<text name="el_conflict_title" text="Обнаружен конфликт модов"/>
+		<text name="el_mod_conflict_message" text="Следующие моды конфликтуют с 'Enhanced Livestock' и не могут использоваться вместе: %s &#10;&#10;Пожалуйста, отключите конфликтующие моды и перезапустите игру."/>
+
+		<text name="el_migration_title" text="Уведомление о миграции данных"/>
+		<text name="el_migration_message" text="В этом сохранении найдены предыдущие данные Realistic Livestock. Ваши настройки, данные животных, Дьюары и ручные инструменты AI Straw будут автоматически перенесены в Enhanced Livestock при сохранении игры."/>
+		<text name="el_migration_files_found" text="Найденные файлы данных:"/>
+		<text name="el_migration_continue" text="Продолжить"/>
+		<text name="el_migration_quit" text="Выйти"/>
+
 	</texts>
 </l10n>

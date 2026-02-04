@@ -692,5 +692,16 @@
 		<text name="el_epp_butcher_processed" text="Tier beim Metzger verarbeitet: %s kg %s"/>
 		<text name="el_epp_butcher_delivered" text="%s zum Metzger geliefert (%.2fx %s)"/>
 
+		<!-- MIGRATION -->
+
+		<text name="el_conflict_title" text="Mod-Konflikt erkannt"/>
+		<text name="el_mod_conflict_message" text="Die folgenden Mod(s) stehen in Konflikt mit 'Enhanced Livestock' und können nicht zusammen verwendet werden: %s &#10;&#10;Bitte deaktivieren Sie die konfliktverursachenden Mod(s) und starten Sie das Spiel neu."/>
+
+		<text name="el_migration_title" text="Hinweis zur Datenmigration"/>
+		<text name="el_migration_message" text="In diesem Spielstand wurden frühere Realistic Livestock-Daten gefunden. Ihre Einstellungen, Tierdaten, Dewars und AI Straw-Handwerkzeuge werden automatisch zu Enhanced Livestock migriert, wenn das Spiel speichert."/>
+		<text name="el_migration_files_found" text="Gefundene Datendateien:"/>
+		<text name="el_migration_continue" text="Fortfahren"/>
+		<text name="el_migration_quit" text="Beenden"/>
+
 	</texts>
 </l10n>

@@ -697,5 +697,16 @@
 		<text name="el_epp_butcher_processed" text="Animal processado no açougue: %s kg de %s"/>
 		<text name="el_epp_butcher_delivered" text="%s entregue no açougue (%.2fx %s)"/>
 
+		<!-- MIGRATION -->
+
+		<text name="el_conflict_title" text="Conflito de mod detectado"/>
+		<text name="el_mod_conflict_message" text="O(s) seguinte(s) mod(s) estão em conflito com 'Enhanced Livestock' e não podem ser usados juntos: %s &#10;&#10;Por favor, desative o(s) mod(s) em conflito e reinicie o jogo."/>
+
+		<text name="el_migration_title" text="Aviso de migração de dados"/>
+		<text name="el_migration_message" text="Dados anteriores do Realistic Livestock foram encontrados neste save. Suas configurações, dados de animais, Dewars e ferramentas manuais AI Straw serão automaticamente migrados para o Enhanced Livestock quando o jogo salvar."/>
+		<text name="el_migration_files_found" text="Arquivos de dados encontrados:"/>
+		<text name="el_migration_continue" text="Continuar"/>
+		<text name="el_migration_quit" text="Sair"/>
+
 	</texts>
 </l10n>

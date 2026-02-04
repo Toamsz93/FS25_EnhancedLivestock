@@ -695,5 +695,16 @@
 		<text name="el_epp_butcher_processed" text="Dyr behandlet hos slagter: %s kg %s"/>
 		<text name="el_epp_butcher_delivered" text="%s leveret til slagter (%.2fx %s)"/>
 
+		<!-- MIGRATION -->
+
+		<text name="el_conflict_title" text="Mod-konflikt opdaget"/>
+		<text name="el_mod_conflict_message" text="Følgende mod(s) er i konflikt med 'Enhanced Livestock' og kan ikke bruges sammen: %s &#10;&#10;Deaktiver venligst de konfliktende mod(s) og genstart spillet."/>
+
+		<text name="el_migration_title" text="Meddelelse om datamigrering"/>
+		<text name="el_migration_message" text="Tidligere Realistic Livestock-data blev fundet i denne gemte fil. Dine indstillinger, dyredata, Dewars og AI Straw-håndværktøj vil automatisk blive migreret til Enhanced Livestock, når spillet gemmer."/>
+		<text name="el_migration_files_found" text="Fundne datafiler:"/>
+		<text name="el_migration_continue" text="Fortsæt"/>
+		<text name="el_migration_quit" text="Afslut"/>
+
 	</texts>
 </l10n>
