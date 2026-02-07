@@ -491,7 +491,7 @@
 
 
 		<!-- НАЛАШТУВАННЯ -->
-		<text name="el_settings" text="Реалістичне тваринництво"/>
+		<text name="el_settings" text="Enhanced Livestock"/>
 		<text name="el_settings_off" text="Вимкнено"/>
 		<text name="el_settings_on" text="Увімкнено"/>
 		<text name="el_settings_deathEnabled_label" text="Видалення тварин"/>

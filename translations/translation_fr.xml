@@ -507,7 +507,7 @@
 		<!--  SETTINGS  -->
 
 
-		<text name="el_settings" text="Bétail Réaliste"/>
+		<text name="el_settings" text="Enhanced Livestock"/>
 
 		<text name="el_settings_off" text="Arrêt"/>
 		<text name="el_settings_on" text="Sur"/>

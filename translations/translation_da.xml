@@ -503,7 +503,7 @@
 		<!--  SETTINGS  -->
 
 
-		<text name="el_settings" text="Realistisk Dyrhold"/>
+		<text name="el_settings" text="Enhanced Livestock"/>
 
 		<text name="el_settings_off" text="Off"/>
 		<text name="el_settings_on" text="On"/>

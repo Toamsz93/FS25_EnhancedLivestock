@@ -503,9 +503,9 @@
 
 
 		<!--  CONFIGURAÇÕES  -->
-		
 
-		<text name="el_settings" text="Pecuária Realista"/>
+
+		<text name="el_settings" text="Enhanced Livestock"/>
 
 		<text name="el_settings_off" text="Desligado"/>
 		<text name="el_settings_on" text="Ligado"/>
