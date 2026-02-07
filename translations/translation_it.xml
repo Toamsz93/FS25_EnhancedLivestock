@@ -493,7 +493,7 @@
 		<!--  SETTINGS  -->
 
 
-		<text name="el_settings" text="Realistic Livestock"/>
+		<text name="el_settings" text="Enhanced Livestock"/>
 
 		<text name="el_settings_off" text="No"/>
 		<text name="el_settings_on" text="Sì"/>
@@ -538,7 +538,7 @@
 		<text name="el_settings_diseasesChance_tooltip" text="Modifica la probabilità che i capi contraggano patologie"/>
 
 		<text name="el_settings_useCustomAnimals_label" text="Usa Modelli Animali Personalizzati"/>
-		<text name="el_settings_useCustomAnimals_tooltip_1" text="Usa i modelli animali di RealisticLivestock (richiede il riavvio)"/>
+		<text name="el_settings_useCustomAnimals_tooltip_1" text="Usa i modelli animali di Enhanced Livestock (richiede il riavvio)"/>
 		<text name="el_settings_useCustomAnimals_tooltip_2" text="Usa modelli animali personalizzati (richiede il riavvio, la cartella deve essere estratta)"/>
 
 		<text name="el_settings_animalsXML_label" text="Percorso XML Animali"/>
@@ -688,7 +688,7 @@
 		<text name="el_death_health" text="scarse condizioni di salute"/>
 		<text name="el_death_age" text="età avanzata"/>
 		<text name="el_death_accident" text="un incidente casuale"/>
-		<text name="el_ui_dependencies_missing" text="RealisticLivestock richiede le seguenti dipendenze:"/>
+		<text name="el_ui_dependencies_missing" text="Enhanced Livestock richiede le seguenti dipendenze:"/>
 		<text name="el_ui_dependency_missing_notInstalled" text="- %s (Non installata)"/>
 		<text name="el_ui_dependency_missing_installed" text="- %s (Installata: %s, Minima richiesta: %s)"/>
 

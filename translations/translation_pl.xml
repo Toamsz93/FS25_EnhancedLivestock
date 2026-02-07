@@ -507,7 +507,7 @@
 		<!--  SETTINGS  -->
 
 
-		<text name="el_settings" text="Realistyczny inwentarz"/>
+		<text name="el_settings" text="Enhanced Livestock"/>
 
 		<text name="el_settings_off" text="Wył."/>
 		<text name="el_settings_on" text="Wł."/>

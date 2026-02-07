@@ -501,7 +501,7 @@
 		<!--  SETTINGS  -->
 
 
-		<text name="el_settings" text="Realistische Viehbestände"/>
+		<text name="el_settings" text="Enhanced Livestock"/>
 
 		<text name="el_settings_off" text="Aus"/>
 		<text name="el_settings_on" text="An"/>
