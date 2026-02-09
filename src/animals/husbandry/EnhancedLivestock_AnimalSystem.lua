@@ -873,7 +873,7 @@ function AnimalSystem:loadFromXMLFile()
 	local savegameDir = g_currentMission.missionInfo.savegameDirectory
 
 	-- Try new filename first, fall back to old filename (migration support)
-	local xmlFile = XMLFile.loadIfExists("ElAnimalSystem", savegameDir .. "/rm_RlAnimalSystem.xml")
+	local xmlFile = XMLFile.loadIfExists("ElAnimalSystem", savegameDir .. "/elAnimalSystem.xml")
 	local rootKey = "ElAnimalSystem"
 
 	if xmlFile == nil then
@@ -994,18 +994,19 @@ function AnimalSystem:loadFromXMLFile()
 
 end
 
-function AnimalSystem:saveToXMLFile(path)
+function AnimalSystem:saveToXMLFile(_)
 
-	if path == nil then
-		return
-	end
+	local savegameDir = g_currentMission.missionInfo.savegameDirectory
+	if savegameDir == nil then return end
 
-	local xmlFile = XMLFile.create("animalSystem", path, "ElanimalSystem")
-	if xmlFile == nil then
-		return
-	end
+	local newPath = savegameDir .. "/elAnimalSystem.xml"
+	local xmlFile = XMLFile.create("elAnimalSystem", newPath, "elAnimalSystem")
+	if xmlFile == nil then return end
 
-	xmlFile:setSortedTable("animalSystem.animalTypes.type", self.types, function(key, type)
+	-- Add version attribute for future migrations
+	xmlFile:setInt("elAnimalSystem#version", 1)
+
+	xmlFile:setSortedTable("elAnimalSystem.animalTypes.type", self.types, function(key, type)
 
 		xmlFile:setString(key .. "#name", type.name)
 		xmlFile:setVector(key .. "#earTagLeft", type.colours.earTagLeft)
@@ -1015,7 +1016,7 @@ function AnimalSystem:saveToXMLFile(path)
 
 	end)
 
-	xmlFile:setSortedTable("animalSystem.countries.country", self.countries, function(key, country)
+	xmlFile:setSortedTable("elAnimalSystem.countries.country", self.countries, function(key, country)
 
 		xmlFile:setInt(key .. "#index", country.index)
 
@@ -1057,7 +1058,7 @@ function AnimalSystem:saveToXMLFile(path)
 
 	end
 
-	xmlFile:setSortedTable("animalSystem.animals.animal", allAnimals, function(key, animal)
+	xmlFile:setSortedTable("elAnimalSystem.animals.animal", allAnimals, function(key, animal)
 
 		animal:saveToXMLFile(xmlFile, key)
 		xmlFile:setInt(key .. ".sale#day", animal.sale.day)
@@ -1076,7 +1077,7 @@ function AnimalSystem:saveToXMLFile(path)
 
 	end
 
-	xmlFile:setSortedTable("animalSystem.aiAnimals.animal", allAIAnimals, function(key, animal)
+	xmlFile:setSortedTable("elAnimalSystem.aiAnimals.animal", allAIAnimals, function(key, animal)
 
 		animal:saveToXMLFile(xmlFile, key)
 
