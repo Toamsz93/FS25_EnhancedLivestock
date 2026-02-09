@@ -830,8 +830,8 @@ function AnimalSystem:loadColourConfigurations()
 		return false
 	end
 
-	local xmlFile = XMLFile.loadIfExists("ElAnimalSystem", savegame.savegameDirectory .. "/ElAnimalSystem.xml")
-	local rootKey = "ElAnimalSystem"
+	local xmlFile = XMLFile.loadIfExists("elAnimalSystem", savegame.savegameDirectory .. "/elAnimalSystem.xml")
+	local rootKey = "elAnimalSystem"
 
 	if xmlFile == nil then
 	-- Fall back to legacy filename
@@ -873,8 +873,8 @@ function AnimalSystem:loadFromXMLFile()
 	local savegameDir = g_currentMission.missionInfo.savegameDirectory
 
 	-- Try new filename first, fall back to old filename (migration support)
-	local xmlFile = XMLFile.loadIfExists("ElAnimalSystem", savegameDir .. "/elAnimalSystem.xml")
-	local rootKey = "ElAnimalSystem"
+	local xmlFile = XMLFile.loadIfExists("elAnimalSystem", savegameDir .. "/elAnimalSystem.xml")
+	local rootKey = "elAnimalSystem"
 
 	if xmlFile == nil then
 	-- Fall back to legacy filename
@@ -945,7 +945,7 @@ function AnimalSystem:loadFromXMLFile()
 
 	end)
 
-	xmlFile:iterate("animalSystem.animals.animal", function(_, key)
+	xmlFile:iterate(rootKey .. ".animals.animal", function(_, key)
 
 		local animal = Animal.loadFromXMLFile(xmlFile, key)
 
@@ -963,7 +963,7 @@ function AnimalSystem:loadFromXMLFile()
 
 	end)
 
-	xmlFile:iterate("animalSystem.aiAnimals.animal", function(_, key)
+	xmlFile:iterate(rootKey .. ".aiAnimals.animal", function(_, key)
 
 		local animal = Animal.loadFromXMLFile(xmlFile, key)
 
